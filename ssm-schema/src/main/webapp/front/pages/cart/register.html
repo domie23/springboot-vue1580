@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="../../assets/css/relys/login.css">
+	</head>
+	<body>
+		<div class="container" id="app">
+			<div class="loginBox">
+				<h3>注册</h3>
+				<form id="loginForm">
+					<div class="input-wrapper">
+						<label>商品表名:</label>
+						<input v-model="tablename" type="text" name="" placeholder="请输入商品表名">
+					</div>
+					<div class="input-wrapper">
+						<label>用户id:</label>
+						<input v-model="userid" type="text" name="" placeholder="请输入用户id">
+					</div>
+					<div class="input-wrapper">
+						<label>商品id:</label>
+						<input v-model="goodid" type="text" name="" placeholder="请输入商品id">
+					</div>
+					<div class="input-wrapper">
+						<label>商品名称:</label>
+						<input v-model="goodname" type="text" name="" placeholder="请输入商品名称">
+					</div>
+					<div class="input-wrapper">
+						<label>购买数量:</label>
+						<input v-model="buynumber" type="text" name="" placeholder="请输入购买数量">
+					</div>
+					<div class="input-wrapper">
+						<label>单价:</label>
+						<input v-model="price" type="text" name="" placeholder="请输入单价">
+					</div>
+					<div class="input-wrapper">
+						<label>会员价:</label>
+						<input v-model="discountprice" type="text" name="" placeholder="请输入会员价">
+					</div>
+				</form>
+				<a href="../login/login.html">已有账号？去登录</a>
+				<button type="button" @click="userRegister">注册</button>
+			</div>
+		</div>
+		<script src="../../assets/js/relys/jquery.js"></script>
+		<script src="../../assets/js/relys/vue.js"></script>
+		<script src="../../assets/js/api/api.js"></script>
+		<script src="../../assets/js/api/defaultuser.js"></script>
+			<script src="../../assets/js/validate.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					"tablename": "",
+					"userid": "",
+					"goodid": "",
+					"goodname": "",
+					"buynumber": "",
+					"price": "",
+					"discountprice": "",
+				},
+				methods: {
+					userRegister(){
+						if(!this.userid){
+							alert(`用户id不能为空`);
+							return
+						}
+						if(!this.goodid){
+							alert(`商品id不能为空`);
+							return
+						}
+						if(!this.buynumber){
+							alert(`购买数量不能为空`);
+							return
+						}
+					if(!isIntNumer(this.buynumber)){
+						alert(`购买数量应输入整数`);
+						return
+					}
+					if(!isNumber(this.price)){
+						alert(`单价应输入数字`);
+						return
+					}
+					if(!isNumber(this.discountprice)){
+						alert(`会员价应输入数字`);
+						return
+					}
+						var data = {
+							"tablename": this.tablename,
+							"userid": this.userid,
+							"goodid": this.goodid,
+							"goodname": this.goodname,
+							"buynumber": this.buynumber,
+							"price": this.price,
+							"discountprice": this.discountprice,
+						}
+						register('cart', data, function(res){
+							if(res.code==0){
+								alert('注册成功')
+								window.parent.location.href = '../login/login.html'
+							}
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

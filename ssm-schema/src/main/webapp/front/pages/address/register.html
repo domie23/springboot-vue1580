@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="../../assets/css/relys/login.css">
+	</head>
+	<body>
+		<div class="container" id="app">
+			<div class="loginBox">
+				<h3>注册</h3>
+				<form id="loginForm">
+					<div class="input-wrapper">
+						<label>用户id:</label>
+						<input v-model="userid" type="text" name="" placeholder="请输入用户id">
+					</div>
+					<div class="input-wrapper">
+						<label>地址:</label>
+						<input v-model="address" type="text" name="" placeholder="请输入地址">
+					</div>
+					<div class="input-wrapper">
+						<label>收货人:</label>
+						<input v-model="name" type="text" name="" placeholder="请输入收货人">
+					</div>
+					<div class="input-wrapper">
+						<label>电话:</label>
+						<input v-model="phone" type="text" name="" placeholder="请输入电话">
+					</div>
+					<div class="input-wrapper">
+						<label>是否默认地址[是/否]:</label>
+						<input v-model="isdefault" type="text" name="" placeholder="请输入是否默认地址[是/否]">
+					</div>
+				</form>
+				<a href="../login/login.html">已有账号？去登录</a>
+				<button type="button" @click="userRegister">注册</button>
+			</div>
+		</div>
+		<script src="../../assets/js/relys/jquery.js"></script>
+		<script src="../../assets/js/relys/vue.js"></script>
+		<script src="../../assets/js/api/api.js"></script>
+		<script src="../../assets/js/api/defaultuser.js"></script>
+			<script src="../../assets/js/validate.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					"userid": "",
+					"address": "",
+					"name": "",
+					"phone": "",
+					"isdefault": "",
+				},
+				methods: {
+					userRegister(){
+						if(!this.userid){
+							alert(`用户id不能为空`);
+							return
+						}
+						if(!this.address){
+							alert(`地址不能为空`);
+							return
+						}
+						if(!this.name){
+							alert(`收货人不能为空`);
+							return
+						}
+						if(!this.phone){
+							alert(`电话不能为空`);
+							return
+						}
+						if(!this.isdefault){
+							alert(`是否默认地址[是/否]不能为空`);
+							return
+						}
+						var data = {
+							"userid": this.userid,
+							"address": this.address,
+							"name": this.name,
+							"phone": this.phone,
+							"isdefault": this.isdefault,
+						}
+						register('address', data, function(res){
+							if(res.code==0){
+								alert('注册成功')
+								window.parent.location.href = '../login/login.html'
+							}
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

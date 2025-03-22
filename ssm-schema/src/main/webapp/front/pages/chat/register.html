@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="../../assets/css/relys/login.css">
+	</head>
+	<body>
+		<div class="container" id="app">
+			<div class="loginBox">
+				<h3>注册</h3>
+				<form id="loginForm">
+					<div class="input-wrapper">
+						<label>用户id:</label>
+						<input v-model="userid" type="text" name="" placeholder="请输入用户id">
+					</div>
+					<div class="input-wrapper">
+						<label>管理员id:</label>
+						<input v-model="adminid" type="text" name="" placeholder="请输入管理员id">
+					</div>
+					<div class="input-wrapper">
+						<label>是否回复:</label>
+						<input v-model="isreply" type="text" name="" placeholder="请输入是否回复">
+					</div>
+				</form>
+				<a href="../login/login.html">已有账号？去登录</a>
+				<button type="button" @click="userRegister">注册</button>
+			</div>
+		</div>
+		<script src="../../assets/js/relys/jquery.js"></script>
+		<script src="../../assets/js/relys/vue.js"></script>
+		<script src="../../assets/js/api/api.js"></script>
+		<script src="../../assets/js/api/defaultuser.js"></script>
+			<script src="../../assets/js/validate.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					"userid": "",
+					"adminid": "",
+					"isreply": "",
+				},
+				methods: {
+					userRegister(){
+						if(!this.userid){
+							alert(`用户id不能为空`);
+							return
+						}
+					if(!isIntNumer(this.isreply)){
+						alert(`是否回复应输入整数`);
+						return
+					}
+						var data = {
+							"userid": this.userid,
+							"adminid": this.adminid,
+							"isreply": this.isreply,
+						}
+						register('chat', data, function(res){
+							if(res.code==0){
+								alert('注册成功')
+								window.parent.location.href = '../login/login.html'
+							}
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

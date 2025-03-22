@@ -1,0 +1,105 @@
+.form-content {
+background: #ffffff;
+padding: 10px 10px 0 10px;
+}
+.table-content {
+background: #ffffff;
+padding: 0 10px;
+}
+.pagination-content {
+margin-top: 10px;
+padding-bottom: 10px;
+text-align: right;
+}
+.detail-form-content{
+background: #ffffff;
+padding: 10px;
+.el-input{
+    min-width: 200px;
+    max-width: 600px;
+}
+}
+.bg {
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+}
+.login-form {
+position: absolute;
+top: 0;
+right: 0;
+width: 350px;
+height: 100%;
+background: #ffffff;
+padding: 0 60px;
+font-size: 18px;
+font-weight: bold;
+}
+.h1 {
+margin-top: 80px;
+font-size: 20px;
+font-weight: bold;
+}
+.btn-login {
+margin-top: 50px;
+width: 100%;
+}
+.el-button--primary{
+    background: linear-gradient(to right, #da8cff, #9a55ff);
+    border-color: #ffffff;
+}
+.el-button--primary:hover{
+    background: linear-gradient(to right, #da8cff, #9a55ff);
+    border-color: #ffffff;
+}
+.el-button--success{
+    background:linear-gradient(to right,#84d9d2, #07cdae);
+    border-color: #ffffff;
+}
+.el-button--success:hover{
+    background: linear-gradient(to right, #84d9d2, #07cdae);
+    border-color: #ffffff;
+}
+.el-button--warning{
+    background:linear-gradient(to right,#f6e384, #ffd500);
+    border-color: #ffffff;
+}
+.el-button--warning:hover{
+    background: linear-gradient(to right, #f6e384, #ffd500);
+    border-color: #ffffff;
+}
+.el-button--danger{
+    background:linear-gradient(to right, #ffbf96, #fe7096);
+    border-color: #ffffff;
+}
+.el-button--danger:hover{
+    background:linear-gradient(to right, #ffbf96, #fe7096);
+    border-color: #ffffff;
+}
+.el-button--info{
+    background: linear-gradient(to right, #90caf9, #047edf 99%);
+    border-color: #ffffff;
+}
+.el-button--info:hover{
+    background: linear-gradient(to right, #90caf9, #047edf 99%);
+    border-color: #ffffff;
+}
+.table-content {
+    background: #ffffff;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+.detail-form-content {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 20px;
+}
+.el-submenu__title:hover{
+    background-color: #9a55ff !important;
+    color: #ffffff  !important;
+  }
+  .el-menu-item:hover{
+    background-color: #9a55ff !important;
+    color: #ffffff  !important;
+  }

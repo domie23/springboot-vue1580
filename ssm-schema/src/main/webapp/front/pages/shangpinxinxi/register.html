@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="../../assets/css/relys/login.css">
+	</head>
+	<body>
+		<div class="container" id="app">
+			<div class="loginBox">
+				<h3>注册</h3>
+				<form id="loginForm">
+					<div class="input-wrapper">
+						<label>商品编号:</label>
+						<input v-model="shangpinbianhao" type="text" name="" placeholder="请输入商品编号">
+					</div>
+					<div class="input-wrapper">
+						<label>商品名称:</label>
+						<input v-model="shangpinmingcheng" type="text" name="" placeholder="请输入商品名称">
+					</div>
+					<div class="input-wrapper">
+						<label>商品库存:</label>
+						<input v-model="shangpinkucun" type="text" name="" placeholder="请输入商品库存">
+					</div>
+					<div class="input-wrapper">
+						<label>商品产地:</label>
+						<input v-model="shangpinchandi" type="text" name="" placeholder="请输入商品产地">
+					</div>
+					<div class="input-wrapper">
+						<label>赞:</label>
+						<input v-model="thumbsupnum" type="text" name="" placeholder="请输入赞">
+					</div>
+					<div class="input-wrapper">
+						<label>踩:</label>
+						<input v-model="crazilynum" type="text" name="" placeholder="请输入踩">
+					</div>
+					<div class="input-wrapper">
+						<label>价格:</label>
+						<input v-model="price" type="text" name="" placeholder="请输入价格">
+					</div>
+				</form>
+				<a href="../login/login.html">已有账号？去登录</a>
+				<button type="button" @click="userRegister">注册</button>
+			</div>
+		</div>
+		<script src="../../assets/js/relys/jquery.js"></script>
+		<script src="../../assets/js/relys/vue.js"></script>
+		<script src="../../assets/js/api/api.js"></script>
+		<script src="../../assets/js/api/defaultuser.js"></script>
+			<script src="../../assets/js/validate.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					"shangpinbianhao": "",
+					"shangpinmingcheng": "",
+					"shangpinkucun": "",
+					"shangpinchandi": "",
+					"thumbsupnum": "",
+					"crazilynum": "",
+					"price": "",
+				},
+				methods: {
+					userRegister(){
+						if(!this.price){
+							alert(`价格不能为空`);
+							return
+						}
+					if(!isIntNumer(this.shangpinkucun)){
+						alert(`商品库存应输入整数`);
+						return
+					}
+					if(!isIntNumer(this.thumbsupnum)){
+						alert(`赞应输入整数`);
+						return
+					}
+					if(!isIntNumer(this.crazilynum)){
+						alert(`踩应输入整数`);
+						return
+					}
+					if(!isNumber(this.price)){
+						alert(`价格应输入数字`);
+						return
+					}
+						var data = {
+							"shangpinbianhao": this.shangpinbianhao,
+							"shangpinmingcheng": this.shangpinmingcheng,
+							"shangpinkucun": this.shangpinkucun,
+							"shangpinchandi": this.shangpinchandi,
+							"thumbsupnum": this.thumbsupnum,
+							"crazilynum": this.crazilynum,
+							"price": this.price,
+						}
+						register('shangpinxinxi', data, function(res){
+							if(res.code==0){
+								alert('注册成功')
+								window.parent.location.href = '../login/login.html'
+							}
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

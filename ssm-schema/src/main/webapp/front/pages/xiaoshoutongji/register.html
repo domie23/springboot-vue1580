@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="../../assets/css/relys/login.css">
+	</head>
+	<body>
+		<div class="container" id="app">
+			<div class="loginBox">
+				<h3>注册</h3>
+				<form id="loginForm">
+					<div class="input-wrapper">
+						<label>年份:</label>
+						<input v-model="nianfen" type="text" name="" placeholder="请输入年份">
+					</div>
+					<div class="input-wrapper">
+						<label>销售数量:</label>
+						<input v-model="xiaoshoushuliang" type="text" name="" placeholder="请输入销售数量">
+					</div>
+				</form>
+				<a href="../login/login.html">已有账号？去登录</a>
+				<button type="button" @click="userRegister">注册</button>
+			</div>
+		</div>
+		<script src="../../assets/js/relys/jquery.js"></script>
+		<script src="../../assets/js/relys/vue.js"></script>
+		<script src="../../assets/js/api/api.js"></script>
+		<script src="../../assets/js/api/defaultuser.js"></script>
+			<script src="../../assets/js/validate.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					"nianfen": "",
+					"xiaoshoushuliang": "",
+				},
+				methods: {
+					userRegister(){
+					if(!isIntNumer(this.xiaoshoushuliang)){
+						alert(`销售数量应输入整数`);
+						return
+					}
+						var data = {
+							"nianfen": this.nianfen,
+							"xiaoshoushuliang": this.xiaoshoushuliang,
+						}
+						register('xiaoshoutongji', data, function(res){
+							if(res.code==0){
+								alert('注册成功')
+								window.parent.location.href = '../login/login.html'
+							}
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
